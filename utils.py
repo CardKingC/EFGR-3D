@@ -73,7 +73,7 @@ def loader(x):
 
     return {key:data[key] for key in data.files}
 
-def get_training_dataloader(mean, std, batch_size=16, num_workers=2, shuffle=True):
+def get_training_dataloader(batch_size=16, num_workers=2, shuffle=True):
     """ return training dataloader
     Args:
         mean: mean of cifar100 training dataset
@@ -103,7 +103,7 @@ def get_training_dataloader(mean, std, batch_size=16, num_workers=2, shuffle=Tru
                               transform=transform_train)
     train_loader=DataLoader(train_set,shuffle=shuffle,num_workers=num_workers,batch_size=batch_size)
     return train_loader
-def get_valid_dataloader(mean, std, batch_size=16, num_workers=2, shuffle=True):
+def get_valid_dataloader(batch_size=16, num_workers=2, shuffle=True):
     """ return training dataloader
     Args:
         mean: mean of cifar100 training dataset
@@ -132,7 +132,7 @@ def get_valid_dataloader(mean, std, batch_size=16, num_workers=2, shuffle=True):
                               transform=transform_valid)
     valid_loader=DataLoader(valid_set,shuffle=shuffle,num_workers=num_workers,batch_size=batch_size)
     return valid_loader
-def get_test_dataloader(mean, std, batch_size=16, num_workers=2, shuffle=True):
+def get_test_dataloader(batch_size=16, num_workers=2, shuffle=True):
     """ return training dataloader
     Args:
         mean: mean of cifar100 test dataset

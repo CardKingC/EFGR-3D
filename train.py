@@ -138,16 +138,12 @@ if __name__=='__main__':
         net = net.cuda()
     # data preprocessing:
     training_loader = get_training_dataloader(
-        settings.CIFAR100_TRAIN_MEAN,
-        settings.CIFAR100_TRAIN_STD,
         num_workers=0,
         batch_size=settings.BATCH_SIZE,
         shuffle=True
     )
 
     valid_loader = get_valid_dataloader(
-        settings.CIFAR100_TRAIN_MEAN,
-        settings.CIFAR100_TRAIN_STD,
         num_workers=0,
         batch_size=settings.BATCH_SIZE,
         shuffle=True
