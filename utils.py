@@ -56,12 +56,13 @@ class ImageClinicalDataset(DatasetFolder):
         path, target = self.samples[index]
         sample = self.loader(path)
         if self.transform is not None:
-            sample['image'] = self.transform(Image.fromarray(sample['image']))
+            sample['image'] = self.transform(sample['image'])
             
         if self.target_transform is not None:
             target = self.target_transform(target)
         #image 已经在transform中转换为了Tensor，这里仅仅改变类型为Float
         sample['image']=sample['image'].float()
+        sample['image']=sample['image'].unsqueeze(0)
         sample['cdata']=torch.from_numpy(sample['cdata']).float()
         return sample, target
 

@@ -38,9 +38,9 @@ def train(epoch):
         labels=labels.to(torch.float)
 
         #
-        # print(outputs)
-        # print()
-        # print(labels)
+        print(outputs)
+        print()
+        print(labels)
 
         loss = loss_function(outputs, labels)
         loss.backward()

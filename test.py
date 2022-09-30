@@ -32,8 +32,6 @@ if __name__=='__main__':
         net=net.cuda()
 
     cifar100_test_loader = get_test_dataloader(
-        settings.CIFAR100_TRAIN_MEAN,
-        settings.CIFAR100_TRAIN_STD,
         #settings.CIFAR100_PATH,
         num_workers=0,
         batch_size=settings.BATCH_SIZE,

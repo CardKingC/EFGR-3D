@@ -78,11 +78,6 @@ def data_set_split(src_data_folder, target_data_folder, train_scale=0.8, val_sca
 
 
 if __name__ == '__main__':
-    src_data_folder = r"./data/image/"
-    target_data_folder = r"./data/dataset1"
+    src_data_folder = r"../data/image/"
+    target_data_folder = r"../data/dataset1"
     data_set_split(src_data_folder, target_data_folder)
-
-
-
-
-
