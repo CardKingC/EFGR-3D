@@ -31,11 +31,12 @@ if __name__=='__main__':
     if settings.GPU:
         net=net.cuda()
 
-    cifar100_test_loader = get_test_dataloader(
+    test_loader = get_test_dataloader(
         #settings.CIFAR100_PATH,
         num_workers=0,
         batch_size=settings.BATCH_SIZE,
     )
+    print(test_loader.dataset.class_to_idx)
     net.load_state_dict(torch.load(args.pth))
     print(net)
     net.eval()
@@ -47,8 +48,8 @@ if __name__=='__main__':
     y_pred=[]
 
     with torch.no_grad():
-        for n_iter, (image, label) in enumerate(cifar100_test_loader):
-            print("iteration: {}\ttotal {} iterations".format(n_iter + 1, len(cifar100_test_loader)))
+        for n_iter, (image, label) in enumerate(test_loader):
+            print("iteration: {}\ttotal {} iterations".format(n_iter + 1, len(test_loader)))
 
             if settings.GPU:
                 #image = image.cuda()
