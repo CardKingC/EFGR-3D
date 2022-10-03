@@ -24,7 +24,7 @@ import re
 def get_network(net):
     """ return given network
     """
-    res = re.search('([a-z]+)([1-9]+)', net)
+    res = re.search('([a-z]+)([0-9]+)', net)
     model_name=res.group(1)
     depth=int(res.group(2))
     if model_name == 'resnet':

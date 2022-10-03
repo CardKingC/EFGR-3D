@@ -147,8 +147,9 @@ class ResNet(nn.Module):
                                        stride=2)
 
         self.avgpool = nn.AdaptiveAvgPool3d((1, 1, 1))
-        self.fc1 = nn.Linear(block_inplanes[3] * block.expansion, block_inplanes[2])
-        self.fc2 = nn.Linear(block_inplanes[2],1)
+        self.fc1 = nn.Linear(block_inplanes[3] * block.expansion, block_inplanes[1])
+        self.fc2 = nn.Linear(block_inplanes[1],block_inplanes[1]//4)
+        self.fc3 = nn.Linear(block_inplanes[1]//4, 1)
         self.sigmoid=nn.Sigmoid()
 
         for m in self.modules():
@@ -213,6 +214,7 @@ class ResNet(nn.Module):
         x = x.view(x.size(0), -1)
         x = self.fc1(x)
         x = self.fc2(x)
+        x = self.fc3(x)
         x = self.sigmoid(x)
         return x
 

@@ -67,19 +67,9 @@ def setWindow(data):
 X轴和Y轴的Size和Spacing没有变化，
 Z轴的Size和Spacing有变化
 """
-def resampleSize(sitkImage, outSize):
-    #重采样函数
-    euler3d = sitk.Euler3DTransform()
-
-    xsize, ysize, zsize = sitkImage.GetSize()
-    xspacing, yspacing, zspacing = sitkImage.GetSpacing()
-    new_spacing_x = zspacing/(outSize[0]/float(xsize))
-    new_spacing_y = zspacing/(outSize[1]/float(ysize))
-    new_spacing_z = zspacing/(outSize[2]/float(zsize))
-
-    origin = sitkImage.GetOrigin()
-    direction = sitkImage.GetDirection()
-    #根据新的spacing 计算新的size
-    newspace = (new_spacing_x, new_spacing_y, new_spacing_z)
-    sitkImage = sitk.Resample(sitkImage,outSize,euler3d,sitk.sitkNearestNeighbor,origin,newspace,direction)
-    return sitkImage
+def resample2Size(img,dst_size=[32,32,32]):
+    original_size=img.GetSize()
+    original_spacing = img.GetSpacing()
+    new_space =[old_size*old_space/new_size for old_size,old_space,new_size in zip(original_size,original_spacing,dst_size)]
+    resampled_img=sitk.Resample(img,dst_size,sitk.Transform(),sitk.sitkLinear,img.GetOrigin(),new_space,img.GetDirection(),0,img.GetPixelID())
+    return resampled_img

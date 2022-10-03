@@ -25,6 +25,7 @@ from utils import get_training_dataloader, get_test_dataloader, WarmUpLR, \
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-net', type=str, required=True, help='net type')
+    parser.add_argument('-pth', type=str, required=False,default=None, help='.pth file')
     args = parser.parse_args()
     net = get_network(args.net)
     if settings.GPU:
@@ -35,8 +36,7 @@ if __name__=='__main__':
         num_workers=0,
         batch_size=settings.BATCH_SIZE,
     )
-
-    net.load_state_dict(torch.load(r'result\resnet18-Friday_30_September_2022_12h_37m_29s.pth'))
+    net.load_state_dict(torch.load(args.pth))
     print(net)
     net.eval()
 
