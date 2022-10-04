@@ -40,7 +40,6 @@ class BasicBlock(nn.Module):
         self.bn2 = nn.BatchNorm3d(planes)
         self.downsample = downsample
         self.stride = stride
-
     def forward(self, x):
         residual = x
 

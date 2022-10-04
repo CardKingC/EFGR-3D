@@ -4,16 +4,8 @@ import torch
 import torch.nn as nn
 from conf import global_settings as settings
 import torch.optim as optim
-
-import torchvision
-from torch.utils.data import DataLoader
-from torchvision import transforms
-from torch.utils.tensorboard import SummaryWriter
-
 import time
-from datetime import datetime
 
-from models.resnet import resnet18
 
 from utils import  get_kfolder_dataloader,WarmUpLR, \
     most_recent_folder, most_recent_weights, last_epoch, best_acc_weights
